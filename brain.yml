@@ -1,0 +1,31 @@
+---
+
+  - includes:
+        - brains/alarm.yml
+        - brains/ambient_sound.yml
+        - brains/all_orders.yml
+        - brains/domoticz.yml
+        - brains/google_calendar.yml
+        - brains/google_maps.yml
+        - brains/hooks.yml
+        - brains/kodi.yml
+        - brains/morning.yml
+        - brains/mpd.yml
+        - brains/reminder.yml
+        - brains/repeat.yml
+        - brains/rss.yml
+        - brains/say.yml
+        - brains/search.yml
+        - brains/snapcast.yml
+        - brains/system.yml
+        - brains/systemdate.yml
+        - brains/todos.yml
+        - brains/uber.yml
+        - brains/weather.yml
+        - brains/web_scrapper.yml
+
+  - name: "kill-switch"
+    signals:
+      - order: "va mourir"
+    neurons:
+      - kill_switch

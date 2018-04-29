@@ -1,0 +1,37 @@
+    {% if say_labels%} 
+        The following movies were found {{ say_labels}}, please define more precisely.
+    
+    {% elif movie_not_found %} 
+        {{ movie_not_found }} were not found in database, please try again.
+    
+    {% elif movie_found %} 
+        Yes, {{ movie_found }} was found.   
+
+    {% elif say_found_movie_labels %} 
+        The following movies were found: {{ say_found_movie_labels }}.      
+
+    {% elif say_no_movie_found %} 
+        {{ say_no_movie_found }} was not found.     
+
+    {% elif say_show_title %} 
+        The show title is: {{ say_show_title }}
+
+    {% elif say_episode_title %}
+        The episode title is: {{ say_episode_title }}   
+
+    {% elif say_song_title %}
+        Its running: {{ say_song_title }}   
+
+    {% elif say_song_artist %}
+        Artist is: {{ say_song_artist }}    
+
+    {% elif say_song_album %}
+        Album: {{ say_song_album }} is running
+
+    {% elif say_movie_title %}
+        You are watching: {{ say_movie_title }}
+
+    {% elif say_no_media_infos_found %}
+        No information were found {{ say_no_media_infos_found }}
+
+    {% endif %}

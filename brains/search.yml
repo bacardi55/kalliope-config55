@@ -1,0 +1,56 @@
+---
+  - name: "wikipedia-search"
+    signals:
+      - order: "cherche sur Wikipédia {{ query }}"
+      - order: "recherche sur Wikipédia {{ query }}"
+    neurons:
+      - wikipedia_searcher:
+          language: "fr"
+          query: "{{ query }}"
+          file_template: "templates/wikipedia_search.j2"
+
+
+
+  - name: "search-movie"
+    signals:
+      - order: "recherche le film {{ movie }}"
+    neurons:
+      - movie_db:
+          api_key: "{{movie_api_key}}"
+          action: "MOVIE"
+          language: "fr"
+          movie_extra: "credits"
+          file_template: templates/movie_db.j2
+          movie: "{{ movie }}"
+  
+  - name: "top-rated-movie"
+    signals:
+      - order: "Quels sont les films les mieux notées"
+    neurons:
+      - movie_db:
+          api_key: "{{movie_api_key}}"
+          action: "TOP_RATED"
+          language: "fr"
+          file_template: templates/movie_db_top_rated.j2
+  
+  - name: "upcoming-movie"
+    signals:
+      - order: "Quels sont les films prochainement à l'affiche"
+    neurons:
+      - movie_db:
+          api_key: "{{movie_api_key}}"
+          action: "UPCOMING"
+          language: "fr"
+          region: "FR"
+          file_template: templates/movie_db_a_venir.j2
+  
+  - name: "now-playing-movie"
+    signals:
+      - order: "Quels sont les films au cinéma"
+    neurons:
+      - movie_db:
+          api_key: "{{movie_api_key}}"
+          action: "NOW_PLAYING"
+          language: "fr"
+          region: "FR"
+          file_template: templates/movie_db_a_laffiche.j2

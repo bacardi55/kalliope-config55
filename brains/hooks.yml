@@ -1,0 +1,20 @@
+---
+  - name: "default-synapse"
+    signals:
+      - order: "default-synapse"
+    neurons:
+      - say:
+          message:
+            - "Désolé, mais je n'ai pas compris"
+
+  - name: "on-triggered-synapse"
+    signals: []
+    neurons:
+      - shell:
+          cmd: "mplayer /home/pi/kalliope_config_05/trigger/ding.wav"
+
+  - name: "on-start-synapse"
+    signals: []
+    neurons:
+      - shell:
+          cmd: "mplayer /home/pi/kalliope_config_05/trigger/ding.wav"

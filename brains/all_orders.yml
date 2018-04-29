@@ -1,0 +1,11 @@
+---
+  - name: "All-orders"
+    signals:
+      - order: "Que puis-je te demander"
+      - order: "liste tous les ordres disponibles"
+    neurons:
+      - list_available_orders:
+          query_replace_text: "et l'argument"
+          ignore_machine_name: 1
+          order_per_synapse_limit: 1
+          file_template: "templates/all_available_orders.j2"

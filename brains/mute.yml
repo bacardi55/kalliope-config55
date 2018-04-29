@@ -1,0 +1,34 @@
+---
+  - name: "mute-synapse"
+    signals:
+      - order: "laisse moi tranquil"
+    neurons:
+      - say:
+          message:
+            - "Bien monsieur, je vous laisse tranquille"
+      - mute:
+          status: True
+
+  - name: "unmute-synapse"
+    signals:
+      - order: "unmute-synapse"
+    neurons:
+      - say:
+          message:
+            - "Kalliope, opérationnelle"
+      - mute:
+          status: False
+
+  - name: "run-simple-sleep"
+    signals:
+      - order: "Fais une petite pause"
+    neurons:
+      - sleep:
+          seconds: 1800
+
+  - name: "run-simple-sleep"
+    signals:
+      - order: "Fais une longue pause"
+    neurons:
+      - sleep:
+          seconds: 3600

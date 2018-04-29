@@ -1,0 +1,85 @@
+---
+  - name: "Morning-update"
+    signals:
+      - order: "nouvelle journée"
+    neurons:
+      - say:
+          message: "Bonjour Monsieur"
+      - neurotransmitter:
+          direct_link: "date-locale"
+      - neurotransmitter:
+          direct_link: "heure-locale"
+      - say:
+          message: "Voulez vous connaitre la météo"
+      - neurotransmitter:
+          from_answer_link: 
+            - synapse: "Get-the-paris-weather"
+              answers:
+                - "oui"
+            - synapse: "Morning-no-response"
+              answers:
+                - "non"
+          default: "Morning-no-response"
+      - say:
+         message: "Voulez vous connaitre vos futurs rendez vous"
+      - neurotransmitter:
+          from_answer_link: 
+            - synapse: "Google-agenda-next"
+              answers:
+                - "oui"
+            - synapse: "Morning-no-response"
+              answers:
+                - "non"
+          default: "Morning-no-response"
+      - say:
+          message: "Voulez vous connaitre les dernières actualités"
+      - neurotransmitter:
+          from_answer_link: 
+            - synapse: "news"
+              answers:
+                - "oui"
+            - synapse: "Morning-no-response"
+              answers:
+                - "non"
+          default: "Morning-no-response"
+      - say:
+          message: "Voulez vous connaitre les dernières actualités football"
+      - neurotransmitter:
+          from_answer_link: 
+            - synapse: "foot-news"
+              answers:
+                - "oui"
+            - synapse: "Morning-no-response"
+              answers:
+                - "non"
+          default: "Morning-no-response"
+      - say:
+          message: "Bonne journée Monsieur"
+
+  - name: "Morning-no-response"
+    signals:
+        - order: "Morning-no-response"
+    neurons:
+      - say:
+          message: "Bien Monsieur"
+
+  - name: "Morning-update-auto"
+    signals:
+      - order: "auto-nouvelle-journée"
+    neurons:
+      - say:
+          message: "Bonjour Monsieur"
+      - neurotransmitter:
+          direct_link: "date-locale"
+      - neurotransmitter:
+          direct_link: "heure-locale"
+      - neurotransmitter:
+          direct_link: "Get-the-paris-weather"
+      - neurotransmitter:
+          direct_link: "Google-agenda-next"
+      - neurotransmitter:
+          direct_link: "news"
+      - neurotransmitter:
+          direct_link: "foot-news"
+      - say:
+          message: "Bonne journée Monsieur"

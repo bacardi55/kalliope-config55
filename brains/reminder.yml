@@ -1,0 +1,22 @@
+---
+  - name: "reminder-synapse"
+    signals:
+      - order: "rappelle-moi de {{ remember }} dans {{ time }} minutes"
+      - order: "rappelle-moi de {{ remember }} dans {{ time }} minute"
+    neurons:
+      - neurotimer:
+          minutes: "{{ time }}"
+          synapse: "reminder-todo"
+          forwarded_parameters:
+            remember: "{{ remember }}"
+      - say:
+          message:
+            - "Bien monsieur, rappel programmé"
+  
+  - name: "reminder-todo"
+    signals:
+      - order: "no_order"
+    neurons:
+      - say:
+          message:
+            - "Monsieur, vous m'avez demandé de vous rappelé de {{ remember }}"

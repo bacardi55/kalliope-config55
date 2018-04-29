@@ -1,0 +1,9 @@
+---
+  - name: "bonjour"
+    signals:
+      - order: "Bonjour kalliopé"
+      - order: "Bonjour calliopée"
+    neurons:
+      - say:
+          message:
+            - "Bonjour monsieur"

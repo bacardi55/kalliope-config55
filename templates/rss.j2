@@ -1,0 +1,5 @@
+Voici les nouvelles de {{ feed }}
+
+{% for item in items %}
+    Nouvelle {{ loop.index }}. {{ item.title }}.
+{% endfor %}

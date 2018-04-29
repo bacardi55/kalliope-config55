@@ -1,0 +1,85 @@
+---
+  - name: "Gmaps-distance"
+    signals:
+      - order: "distance entre {{origin}} et {{destination}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          mode: "driving"
+          language: "fr"
+          units: "metric"
+          traffic_model: "pessimistic"
+          origin: "{{origin}}"
+          destination: "{{destination}}"
+          file_template: "templates/gmaps.j2"
+
+  - name: "Gmaps-distance-from-home"
+    signals: 
+      - order: "distance pour aller à {{destination}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          mode: "driving"
+          language: "fr"
+          units: "metric"
+          origin: "{{home_address}}"
+          mode: "driving"
+          destination: "{{destination}}"
+          file_template: "templates/gmaps.j2"
+
+  - name: "Gmaps-place-address"
+    signals: 
+      - order: "adresse de {{search}}"
+      - order: "adresses de {{search}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          language: "fr"
+          units: "metric"
+          search: "{{search}}"
+          file_template: "templates/gmaps.j2"
+
+  - name: "Gmaps-distance-from-home-by-tube"
+    signals: 
+      - order: "métro {{destination}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          mode: "transit"
+          language: "fr"
+          units: "metric"
+          origin: "{{home_address}}"
+          direction: True
+          destination: "{{destination}}"
+          file_template: "templates/gmaps.j2"
+
+  - name: "Gmaps-directions-by-care"
+    signals: 
+      - order: "directions {{destination}}"
+      - order: "direction {{destination}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          mode: "driving"
+          language: "fr"
+          units: "metric"
+          origin: "{{home_address}}"
+          direction: True
+          destination: "{{destination}}"
+          file_template: "templates/gmaps.j2"
+
+  - name: "Gmaps-direction"
+    signals: 
+      - order: "direction entre {{origin}} et {{destination}}"
+    neurons:
+      - gmaps:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          direction: True
+          mode: "transit"
+          language: "fr"
+          units: "metric"
+          direction: "True"
+          file_template: "templates/gmaps.j2"
+          origin: "{{origin}}"
+          destination: "{{destination}}"
+

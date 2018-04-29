@@ -1,0 +1,27 @@
+---
+  - name: "heure-locale"
+    signals:
+      - order: "quelle heure est-il"
+      - order: "quel heure est-il"
+    neurons:
+      - systemdate:
+          say_template:
+            - "il est {{ hours }} heure et {{ minutes }} minute"
+
+  - name: "date-locale"
+    signals:
+      - order: "quelle date sommes-nous"
+    neurons:
+      - systemdate:
+          file_template: "templates/systemdate_template.j2"
+
+  - name: "Wwtime-city"
+    signals:
+      - order: "donne moi l'heure à {{city}}"
+    neurons:
+      - wwtime:
+          gmaps_api_key: "{{gmaps_api_key}}"
+          local: "Paris France"
+          city: "{{city}}"
+          file_template: "templates/wwtime.j2"
+

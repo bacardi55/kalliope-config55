@@ -1,0 +1,27 @@
+---
+  - name: "foot-news"
+    signals:
+      - order: "quelle est l'actualité football"
+    neurons:
+      - say:
+          message: "Recherche des actualités football monsieur"
+      - rss_reader:
+          feed_url: "http://www.lequipe.fr/rss/actu_rss_Football.xml"
+          max_items: 10
+          file_template: templates/rss.j2
+
+  - name: "news"
+    signals:
+      - order: "quelles sont les actualités"
+    neurons:
+      - say:
+          message: "Recherche des actualités monsieur"
+      - rss_reader:
+          feed_url: "http://www.lemonde.fr/rss/une.xml"
+          max_items: 10
+          file_template: templates/rss.j2
+      - rss_reader:
+          feed_url: "http://www.lemonde.fr/m-actu/rss_full.xml"
+          max_items: 10
+          file_template: templates/rss.j2
+

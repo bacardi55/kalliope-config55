@@ -1,0 +1,123 @@
+---
+
+  - name: "kodi-play-pause"
+    signals:
+      - order: "pause kodi"
+      - order: "continue kodi"
+    neurons:
+      - kodi:
+          input_action: "pause"
+          kodi_ip: "{{kodi_ip}}"
+
+
+  - name: "kodi-stop"
+    signals:
+      - order: "kodi stop"
+    neurons:
+      - kodi:
+          input_action: "stop"
+          kodi_ip: "{{kodi_ip}}"
+
+
+  - name: "kodi-movies"
+    signals:
+      - order: "kodi ouvre les films"
+    neurons:
+      - kodi:
+          show_video_path: "videodb://movies/titles/"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-go-down"
+    signals:
+      - order: "kodi va {{ query }} fois en bas"
+    neurons:
+      - kodi:
+          input_action: "down"
+          repeat_action: "{{query}}"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-go-right"
+    signals:
+      - order: "kodi va {{ query }} fois à droite"
+    neurons:
+      - kodi:
+          input_action: "right"
+          repeat_action: "{{query}}"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-go-left"
+    signals:
+      - order: "kodi va {{ query }} fois à gauche"
+    neurons:
+      - kodi:
+          input_action: "left"
+          repeat_action: "{{query}}"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-go-top"
+    signals:
+      - order: "kodi va {{ query }} fois en haut"
+    neurons:
+      - kodi:
+          input_action: "up"
+          repeat_action: "{{query}}"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-select"
+    signals:
+      - order: "kodi selection"
+    neurons:
+      - kodi:
+          input_action: "select"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-start-movie-without-reask"
+    signals:
+      - order: "kodi démarre le film {{ query }}"
+    neurons:
+      - kodi:
+          search_movie: "{{ query }}"
+          say_template: "Je n'ai pas trouvé le film {{ movie_not_found }}"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-start-movie"
+    signals:
+      - order: "kodi démarre le film {{ query }}"
+    neurons:
+      - kodi:
+          search_movie: "{{ query }}"
+          abort_orders:
+            - "abort"
+            - "stop asking"
+          reask: True
+          file_template: "templates/kodi.j2"
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-start-show"
+    signals:
+      - order: "kodi démarre série télé {{ start_tvshow }} saison {{ season }} épisode {{ episode }}"
+    neurons:
+      - kodi:
+          start_tvshow: "{{ start_tvshow }}"
+          season: "{{ season }}"
+          episode: "{{ episode }}"
+          open_season_dir: True
+          kodi_ip: "{{kodi_ip}}"
+
+  - name: "kodi-resume-tvshow"
+    signals:
+      - order: "kodi continue la série {{ query }}"
+    neurons:
+      - kodi:
+          resume_tvshow: "{{ query }}"
+          open_season_dir: True
+          kodi_ip: "{{kodi_ip}}"
+
+
+  - name: "kodi-open-twitch"
+    signals:
+      - order: "kodi ouvre twitch"
+    neurons:
+      - kodi:
+          kodi_ip: "{{kodi_ip}}"
+          open_addon: "plugin.video.twitch"

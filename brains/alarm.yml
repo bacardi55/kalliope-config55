@@ -1,0 +1,8 @@
+---
+  - name: "alarm-clock"
+    signals:
+      - order: "réveille-moi à {{ query }}"
+    neurons:
+      - shell:
+          cmd: "./scripts/alarm-clock.py {{query}}"
+          say_template: "{{output}}"

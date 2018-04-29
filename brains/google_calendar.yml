@@ -1,0 +1,32 @@
+---
+  - name: "Google-agenda-next"
+    signals:
+      - order: "quels sont mes prochains rendez-vous"
+    neurons:
+      - say: 
+          message: "Recherche des prochains rendez-vous en cours monsieur"
+      - google_calendar:
+          credentials_file: "{{gcal_credentials}}"
+          client_secret_file: "{{gcal_client_secret}}"
+          scopes: "https://www.googleapis.com/auth/calendar.readonly"
+          application_name: "kalliope"
+          max_results: "3"
+          locale: fr_FR.UTF-8
+          no_meeting_msg: "Vous n'avez pas de prochain rendez vous"
+          meeting_intro_msg: "Vos 3 prochains rendez vous sont"
+          file_template: "templates/google_calendar.j2"
+
+  - name: "Google-agenda-next-one"
+    signals:
+      - order: "quel est mon prochains rendez-vous"
+    neurons:
+      - google_calendar:
+          credentials_file: "{{gcal_credentials}}"
+          client_secret_file: "{{gcal_client_secret}}"
+          scopes: "https://www.googleapis.com/auth/calendar.readonly"
+          application_name: "kalliope"
+          max_results: "1"
+          locale: fr_FR.UTF-8
+          no_meeting_msg: "Vous n'avez pas de prochain rendez vous"
+          meeting_intro_msg: "Votre prochain rendez vous est"
+          file_template: "templates/google_calendar.j2"

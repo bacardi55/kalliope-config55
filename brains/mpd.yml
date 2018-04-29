@@ -1,0 +1,119 @@
+---
+  - name: "play-music"
+    signals:
+      - order: "start playlist {{query}}"
+    neurons:
+      - kalliopempd:
+          mpd_action: "playlist"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "1"
+          mpd_volume: "50"
+          query: "{{query}}"
+
+  - name: "play-music-hiphop"
+    signals:
+      - order: "lance de la bonne musique"
+      - order: "mets de la bonne musique"
+    neurons:
+      - kalliopempd:
+          mpd_action: "playlist"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: 1
+          mpd_volume: "50"
+          query: "HipHop"
+
+  - name: "search-fashion-music"
+    signals:
+      - order: "Mets de la musique populaire"
+    neurons:
+      - kalliopempd:
+          mpd_action: "playlist_spotify"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "0"
+          #query: "Spotify/Top tracks/Global"
+          query: "Spotify/Top tracks/Country"
+
+  - name: "play-toggle"
+    signals:
+      - order: "pause musique"
+      - order: "pause la musique"
+    neurons:
+      - kalliopempd:
+          mpd_action: "toggle_play"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "1"
+
+  - name: "play-next"
+    signals:
+      - order: "chanson suivante"
+    neurons:
+      - kalliopempd:
+          mpd_action: "play_next"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+
+  - name: "play-previous"
+    signals:
+      - order: "chanson précédente"
+    neurons:
+      - kalliopempd:
+          mpd_action: "play_previous"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+
+  - name: "play-stop"
+    signals:
+      - order: "arrête la musique"
+    neurons:
+      - kalliopempd:
+          mpd_action: "play_stop"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+
+  - name: "search-music"
+    signals:
+      - order: "Recherche musicale {{mpd_search}}"
+    neurons:
+      - kalliopempd:
+          mpd_action: "search"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "0"
+          query: "{{mpd_search}}"
+
+  - name: "play-rmc"
+    signals:
+      - order: "Radio RMC"
+    neurons:
+      - kalliopempd:
+          mpd_action: "search"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "0"
+          query: "RMC 103.1"
+
+  - name: "play-rire-chansons"
+    signals:
+      - order: "Radio rire et chanson"
+      - order: "Radio rires et chansons"
+    neurons:
+      - kalliopempd:
+          mpd_action: "search"
+          mpd_url: "{{mpd_url}}"
+          mpd_port: "{{mpd_port}}"
+          mpd_password: "{{mpd_password}}"
+          mpd_random: "0"
+          query: "Rire et Chansons"

@@ -1,0 +1,31 @@
+---
+  - name: "meteo-local"
+    signals:
+      - order: "quelle est la météo à {{ location }}"
+    neurons:
+      - say:
+          message: "Récupération de la météo en cours Monsieur"
+      - openweathermap:
+          api_key: "{{openweathermap_api_key}}"
+          lang: "fr"
+          temp_unit: "celsius"
+          country: "FR"
+          location: "{{ location }}"
+          say_template:
+            - "Aujourd'hui a {{ location }} le temps est {{ weather_today }} avec une température de {{ temp_today_temp }} degrés et demain le temps sera {{ weather_tomorrow }} avec une température de {{ temp_tomorrow_temp }} degrés"
+
+  - name: "Get-the-paris-weather"
+    signals:
+      - order: "quel temps fait-il"
+    neurons:
+      - say:
+          message: "Récupération de la météo en cours Monsieur"
+      - openweathermap:
+          api_key: "{{openweathermap_api_key}}"
+          lang: "fr"
+          temp_unit: "celsius"
+          country: "FR"
+          location: "paris"
+          say_template:
+            - "Aujourd'hui a {{ location }} le temps est {{ weather_today }} avec une température de {{ temp_today_temp }} degrés et demain le temps sera {{ weather_tomorrow }} avec une température de {{ temp_tomorrow_temp }} degrés"
+
